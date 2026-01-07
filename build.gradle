@@ -18,6 +18,7 @@ dependencies {
     implementation 'org.openjfx:javafx-fxml:17'
     implementation 'org.openjfx:javafx-graphics:17'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.postgresql:postgresql:42.7.2'
 }
 
 javafx {
