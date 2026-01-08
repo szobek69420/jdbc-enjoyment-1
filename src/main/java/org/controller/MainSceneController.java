@@ -29,7 +29,20 @@ public class MainSceneController {
 
     private void goToLoginScreen()
     {
-        System.out.println("kys");
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            LoginSceneController controller=loader.getController();
+
+            controller.init(stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        }
+        catch (Exception sex)
+        {
+            System.err.println(sex.getMessage());
+        }
     }
     private void goToRegisterScreen()
     {

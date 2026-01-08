@@ -1,6 +1,9 @@
 package main.java.org.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -23,6 +26,8 @@ public class RegisterSceneController {
 
     @FXML
     private Button registerButton;
+    @FXML
+    private Button backButton;
 
     @FXML
     private Text errorMessageText;
@@ -32,6 +37,7 @@ public class RegisterSceneController {
         this.stage=stage;
 
         registerButton.setOnMouseClicked(e->register());
+        backButton.setOnMouseClicked(e->goBack());
     }
 
     private void register()
@@ -56,10 +62,30 @@ public class RegisterSceneController {
             {
                 throw new RuntimeException("Couldn't connect to the server nigga");
             }
+
+            goBack();
         }
         catch(Exception sex)
         {
             errorMessageText.setText(sex.getMessage());
+        }
+    }
+
+    private void goBack()
+    {
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/Main.fxml"));
+            Parent root=loader.load();
+            MainSceneController controller=loader.getController();
+
+            controller.init(stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
 }
